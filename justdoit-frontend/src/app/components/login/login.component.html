@@ -1,0 +1,23 @@
+<div class="form-login">
+
+    <form class="form-create" *ngIf="loginForm" [formGroup]="loginForm">
+        <label class="flex" for="username">
+            Username/Email:
+            <input id="username"  type="text" formControlName="usernameControl"  maxlength="256" />
+
+        </label>
+
+        <label class="flex" for="password">
+            Password:
+            <input id="password" type="password" formControlName="passwordControl"  maxlength="256" />
+        </label>
+        <div *ngIf="errorMessage" class="login-error">
+          {{ errorMessage }}
+        </div>
+        <a routerLink="/forgot-password">Forgot password?</a>
+        <div class="flex flex-revert">
+            <button (click)="submit()" [disabled]="!loginForm.valid || isLoggingIn">Login</button>
+            <button class="button-empty" routerLink="/register">Register</button>
+        </div>
+    </form>
+</div>

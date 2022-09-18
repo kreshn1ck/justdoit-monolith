@@ -1,0 +1,12 @@
+<div class="login">
+
+  <div *ngIf="errorMessage" class="login-error">
+    Could not activate user. {{ errorMessage }}
+  </div>
+  <div *ngIf="isSuccess">
+    Account has been activated.
+  </div>
+  <div>
+    <button routerLink="/login">Go to Login</button>
+  </div>
+</div>

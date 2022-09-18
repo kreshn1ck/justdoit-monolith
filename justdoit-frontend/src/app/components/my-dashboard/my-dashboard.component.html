@@ -1,0 +1,185 @@
+<div class="dashboard-tabs">
+  <div class="dashboard-header">
+    <ul class="tabs">
+      <li *ngFor="let tab of tabs">
+        <a [class]="tab.active ? 'active' : ''" [routerLink]="tab.url">{{ tab.name }}</a>
+      </li>
+    </ul>
+    <div class="create-todo">
+      <button (click)="openCreateTodo()">Create to do</button>
+    </div>
+  </div>
+
+  <!--
+  <div class="todo-slider">
+
+      <div class="todo-slider-title">
+          on going
+      </div>
+
+      <swiper [slidesPerView]="4" [pagination]="{
+          clickable: true
+        }" [navigation]="true" [spaceBetween]="30" class="mySwiper">
+          <ng-template swiperSlide>
+              <mat-card>
+                  <mat-card-header>
+                      <mat-card-title>Shiba Inu</mat-card-title>
+                      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                      <p>
+                          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                          Japan.
+                          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                          originally
+                          bred for hunting.
+                      </p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
+                  </mat-card-actions>
+              </mat-card>
+          </ng-template>
+          <ng-template swiperSlide>
+              <mat-card>
+                  <mat-card-header>
+                      <mat-card-title>Shiba Inu</mat-card-title>
+                      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                      <p>
+                          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                          Japan.
+                          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                          originally
+                          bred for hunting.
+                      </p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
+                  </mat-card-actions>
+              </mat-card>
+          </ng-template>
+      </swiper>
+
+  </div> -->
+
+  <div class="todo-slider my-slider">
+
+    <div class="slider-label">
+      <span class="slider-header-ongoing">Ongoing</span>
+    </div>
+
+    <swiper *ngIf="onGoingTodos.length > 0" [slidesPerView]="3" [loop]="false" [pagination]="{
+            clickable: true
+          }" [navigation]="true" [spaceBetween]="30" class="swiper-container">
+      <ng-template swiperSlide *ngFor="let todo of onGoingTodos">
+
+        <mat-card class="card-friend">
+          <mat-card-header>
+            <mat-card-title>{{ todo.title }}</mat-card-title>
+            <mat-card-subtitle>{{ todo.assignee.username }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{ todo.description }}
+            </p>
+          </mat-card-content>
+          <div class="card-info">
+            <mat-card-subtitle>{{ todo.dueDate | date: 'MM/dd/yyyy' }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ todo.assignee.username }}</mat-card-subtitle>
+          </div>
+          <mat-card-actions class="card-buttons">
+            <button (click)="deleteTodo(todo.id)" mat-stroked-button color="warn">Delete</button>
+            <button (click)="editTodo(todo)" mat-stroked-button color="accent">Edit</button>
+            <button (click)="finishTodo(todo.id)" mat-stroked-button color="primary">Finish</button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-template>
+    </swiper>
+
+    <div *ngIf="onGoingTodos.length === 0" class="no-data-label text-orange">
+      No ongoing todos
+    </div>
+  </div>
+
+  <div class="todo-slider my-slider">
+
+    <div class="slider-label">
+      <span class="slider-header-expired">Expired</span>
+    </div>
+
+    <swiper *ngIf="overDueTodos.length > 0" [slidesPerView]="3" [loop]="false" [pagination]="{
+            clickable: true
+          }" [navigation]="true" [spaceBetween]="30" class="swiper-container">
+      <ng-template swiperSlide *ngFor="let todo of overDueTodos">
+
+        <mat-card class="card-friend">
+          <mat-card-header>
+            <mat-card-title>{{ todo.title }}</mat-card-title>
+            <mat-card-subtitle>{{ todo.assignee.username }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{ todo.description }}
+            </p>
+          </mat-card-content>
+          <div class="card-info">
+            <mat-card-subtitle>{{ todo.dueDate | date: 'MM/dd/yyyy' }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ todo.assignee.username }}</mat-card-subtitle>
+          </div>
+          <mat-card-actions class="card-buttons">
+            <button (click)="deleteTodo(todo.id)" mat-stroked-button color="warn">Delete</button>
+            <button (click)="editTodo(todo)" mat-stroked-button color="accent">Edit</button>
+            <button (click)="finishTodo(todo.id)" mat-stroked-button color="primary">Finish</button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-template>
+    </swiper>
+
+    <div *ngIf="overDueTodos.length === 0" class="no-data-label text-red">
+      No expired todos
+    </div>
+  </div>
+
+  <div class="todo-slider my-slider">
+
+    <div class="slider-label">
+      <span class="slider-header-finished">Finished</span>
+    </div>
+
+    <swiper *ngIf="finishedTodos.length > 0" [slidesPerView]="3" [loop]="false" [pagination]="{
+            clickable: true
+          }" [navigation]="true" [spaceBetween]="30" class="swiper-container">
+      <ng-template swiperSlide *ngFor="let todo of finishedTodos">
+
+        <mat-card class="card-friend">
+          <mat-card-header>
+            <mat-card-title>{{ todo.title }}</mat-card-title>
+            <mat-card-subtitle>{{ todo.assignee.username }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{ todo.description }}
+            </p>
+          </mat-card-content>
+          <div class="card-info">
+            <mat-card-subtitle>{{ todo.dueDate | date: 'MM/dd/yyyy' }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ todo.assignee.username }}</mat-card-subtitle>
+          </div>
+          <mat-card-actions class="card-buttons">
+            <button (click)="deleteTodo(todo.id)" mat-stroked-button color="warn">Delete</button>
+            <button (click)="editTodo(todo)" mat-stroked-button color="accent">Edit</button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-template>
+    </swiper>
+
+    <div *ngIf="finishedTodos.length === 0" class="no-data-label text-green">
+      No finished todos yet
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,38 @@
+<div class="register-login">
+
+  <div *ngIf="!registered">
+    <form class="form-create" *ngIf="registerForm" [formGroup]="registerForm">
+      <label class="flex" for="username">
+        Username:
+        <input id="username" type="text" formControlName="usernameControl"  maxlength="256" />
+      </label>
+
+      <label class="flex" for="email">
+        Email:
+        <input id="email" type="email" formControlName="emailControl"  maxlength="256" />
+      </label>
+
+      <label class="flex" for="password">
+        Password:
+        <input id="password" type="password" formControlName="passwordControl"  maxlength="256" />
+      </label>
+
+      <label class="flex" for="confirm-password">
+        Confirm Password:
+        <input id="confirm-password" type="password" formControlName="confirmPasswordControl"  maxlength="256" />
+      </label>
+      <div *ngIf="errorMessage" class="login-error">
+        {{ errorMessage }}
+      </div>
+      <div class="flex flex-revert">
+        <button (click)="submit()" [disabled]="!registerForm.valid || isRegistering">Register</button>
+        <button class="button-empty" routerLink="/login">Return to Login</button>
+      </div>
+    </form>
+  </div>
+  <div class="registered-success"  *ngIf="registered">
+    <h3>Registered, please check your email!</h3>
+    <p>Go to your email and click the activation link to activate your account.</p>
+    <button routerLink="/login">Go to Login</button>
+  </div>
+</div>

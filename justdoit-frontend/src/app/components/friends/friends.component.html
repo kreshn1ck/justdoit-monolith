@@ -1,0 +1,101 @@
+<div class="friends-header">
+    <h1>Friendships:</h1>
+
+    <div class="add-friend">
+        <button (click)="openAddFriend()">Add friends</button>
+    </div>
+</div>
+
+<div class="my-slider friends-slider">
+
+    <div class="slider-label">
+        <span class="slider-header text-orange">Friends</span>
+    </div>
+
+    <swiper *ngIf="friends.length > 0" [slidesPerView]="4" [loop]="false" [pagination]="{
+        clickable: true
+      }" [navigation]="true" [spaceBetween]="30" class="swiper-container">
+        <ng-template swiperSlide *ngFor="let user of friends">
+            <mat-card class="card-friend">
+                <mat-card-header>
+                    <mat-card-title>{{ user.relatedUser.username }}</mat-card-title>
+                    <mat-card-subtitle>{{ user.relatedUser.email }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                    </p>
+                </mat-card-content>
+                <mat-card-actions class="card-buttons">
+                    <button (click)="deleteFriend(user.relatedUser.id)" mat-button color="primary">Delete</button>
+                </mat-card-actions>
+            </mat-card>
+        </ng-template>
+    </swiper>
+
+    <div *ngIf="friends.length === 0" class="no-data-label text-orange">
+        No friends yet
+    </div>
+</div>
+
+<div class="my-slider pending-slider">
+
+    <div class="slider-label">
+      <span class="slider-header text-orange">Friend requests</span>
+    </div>
+
+    <swiper *ngIf="pending.length > 0"  [slidesPerView]="4" [loop]="false" [pagination]="{
+        clickable: true
+      }" [navigation]="true" [spaceBetween]="30" class="swiper-container">
+        <ng-template swiperSlide *ngFor="let user of pending">
+            <mat-card class="card-friend">
+                <mat-card-header>
+                    <mat-card-title>{{ user.relatedUser.username }}</mat-card-title>
+                    <mat-card-subtitle>{{ user.relatedUser.email }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                    </p>
+                </mat-card-content>
+                <mat-card-actions class="card-buttons">
+                    <button (click)="acceptFriend(user.relatedUser.id)" mat-button color="primary">Accept</button>
+                    <button (click)="deleteFriend(user.relatedUser.id)" mat-button color="primary">Cancel</button>
+                </mat-card-actions>
+            </mat-card>
+        </ng-template>
+    </swiper>
+
+    <div *ngIf="pending.length === 0" class="no-data-label text-orange">
+        No friend requests
+    </div>
+</div>
+
+<div class="my-slider requested-slider">
+
+  <div class="slider-label">
+    <span class="slider-header text-orange">Requested friendships</span>
+  </div>
+
+  <swiper *ngIf="requested.length > 0"  [slidesPerView]="4" [loop]="false" [pagination]="{
+        clickable: true
+      }" [navigation]="true" [spaceBetween]="30" class="swiper-container">
+    <ng-template swiperSlide *ngFor="let user of requested">
+      <mat-card class="card-friend">
+        <mat-card-header>
+          <mat-card-title>{{ user.relatedUser.username }}</mat-card-title>
+          <mat-card-subtitle>{{ user.relatedUser.email }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="card-buttons">
+          <button (click)="deleteFriend(user.relatedUser.id)" mat-button color="primary">Cancel</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-template>
+  </swiper>
+
+  <div *ngIf="requested.length === 0" class="no-data-label text-orange">
+    No requested friendships
+  </div>
+</div>

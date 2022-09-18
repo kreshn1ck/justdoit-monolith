@@ -1,0 +1,25 @@
+.friends-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  button {
+    border-radius: 6px;
+  }
+}
+.friends-swiper {
+  .no-data-label {
+    position: absolute;
+    left: 50%;
+    top: 0;
+  }
+}
+
+.slider-header {
+  background-color: inherit;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.text-orange {
+  color: #ce9b3d;
+}

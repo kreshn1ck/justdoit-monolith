@@ -1,0 +1,26 @@
+<header class="flex">
+  <div class="logo">
+    <img [routerLink]="['/']" src="assets/images/angular.svg" alt="" />
+  </div>
+  <div class="logout" (click)="logout()">Logout</div>
+</header>
+
+<section class="main">
+  <div class="sidebar">
+    <ul>
+      <li routerLink="/dashboard" >
+        <span>To Do`s</span>
+      </li>
+      <!--<li routerLink="/my-dashboard" >
+        <span>Created To do`s</span>
+      </li>-->
+      <li routerLink="/friends">
+        <span>Friends</span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</section>
+

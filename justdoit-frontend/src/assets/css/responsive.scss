@@ -1,0 +1,43 @@
+@media screen and (max-width: 1200px) {
+    .container {
+        max-width: calc(100% - 60px);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        max-width: 100%;
+    }
+    .main {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    .form-create {
+        width: 100%;
+        max-width: 100%;
+    }
+    .table-content {
+        overflow: auto;
+    }
+    button {
+        padding: 8px 15px;
+    }
+    .form-create input,
+    .form-create select {
+        max-width: 170px;
+    }
+    .form-line-wrap {
+        .form-input {
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            vertical-align: top;
+            min-width: 250px;
+        }
+    }
+}

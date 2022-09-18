@@ -1,0 +1,117 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  button {
+    border-radius: 6px;
+  }
+}
+
+.todo-slider {
+  .swiper {
+    margin-top: 10px;
+    padding-bottom: 25px;
+  }
+}
+
+.tabs {
+  padding: 0;
+  margin: 0 0 30px;
+  list-style: none;
+  li {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    a {
+      padding: 15px 20px;
+      margin: 0 15px 0 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      &.active{
+        background-color: #eee;
+      }
+    }
+  }
+}
+
+.todo {
+  border: 1px solid #000;
+  width: 250px;
+  display: inline-block;
+  .todo-title {
+    padding: 5px;
+    background-color: #eee;
+    font-size: 18px;
+  }
+  .todo-edit {
+    float: right;
+  }
+  .todo-description {
+    background-color: #fff;
+    padding: 15px 10px;
+    font-size: 14px;
+  }
+  .todo-created {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f1f1f1;
+  }
+  .todo-footer {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffcece;
+  }
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    &:last-child {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-header-finished {
+  // background-color: #8ff28f; //green
+  background-color: inherit;
+  font-weight: 500;
+  font-size: 18px;
+  color: #77c877;
+}
+.slider-header-ongoing {
+  // background-color: #ffd891; //orange
+  background-color: inherit;
+  font-weight: 500;
+  font-size: 18px;
+  color: #ce9b3d;
+}
+.slider-header-expired {
+  // background-color: #ffc4c4; //red
+  background-color: inherit;
+  font-weight: 500;
+  font-size: 18px;
+  color: #F76F75;
+}
+
+.text-red {
+  color: #F76F75;
+}
+
+.text-orange {
+  color: #ce9b3d;
+}
+
+.text-green {
+  color: #77c877;
+}
